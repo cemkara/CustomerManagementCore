@@ -1,0 +1,99 @@
+﻿@model List<EntityLayer.Concrete.Issue>
+@{
+    ViewData["Title"] = "Issues";
+}
+
+
+<div class="card my-4">
+    <div class="card-header pb-0 p-3">
+        <div class="row">
+            <div class="col-6 d-flex align-items-center">
+                <h6 class="mb-0">Issues</h6>
+            </div>
+            <div class="col-6 text-end">
+                <a href="/Issue/Add" class="btn btn-sm btn-outline-success mb-0">New</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body px-0 pb-2">
+        <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+                <thead>
+                    <tr>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Title</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Customer</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Employe</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Delivery Date</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="mb-0">@item.Title</h6>
+                                    <p class="text-xs text-secondary mb-0">
+                                        @{
+                                            string pName = "-";
+                                            if (item.Product != null)
+                                            {
+                                                pName = item.Product.Name;
+                                            }
+                                        }
+                                        @pName
+                                    </p>
+                                </div>
+                            </td>
+                            <td>
+                                @item.Customer.Name @item.Customer.Surname
+                            </td>
+                            <td>
+                                @{
+                                    string eName = "-";
+                                    if (item.Employe != null)
+                                    {
+                                        eName = @item.Employe.Name + " " + item.Employe.Surname;
+                                    }
+                                }
+                                @eName
+                            </td>
+                            <td>
+                                @{
+                                    string eDate = "-";
+                                    if (item.EstimatedDeliveryDate != null)
+                                    {
+                                        eDate = item.EstimatedDeliveryDate.ToString();
+                                    }
+                                }
+                                @eDate
+                            </td>
+                            <td class="align-middle">
+                                <a href="/Issue/Edit/@item.IssueId" class="btn btn-sm btn-outline-warning">Edit</a>
+
+                                @{
+                                    string btnStatusText = "";
+                                    string btnStatusClass = "";
+                                    if (item.Status)
+                                    {
+                                        btnStatusText = "Not Completed";
+                                        btnStatusClass = "danger";
+                                    }
+                                    else
+                                    {
+                                        btnStatusText = "Completed";
+                                        btnStatusClass = "success";
+                                    }
+                                }
+
+                                <a href="/Issue/StatusChange/@item.IssueId" class="btn btn-sm btn-outline-@btnStatusClass">@btnStatusText</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

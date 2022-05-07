@@ -1,0 +1,16 @@
+﻿using EntityLayer.Concrete;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessLayer.Abstract
+{
+    public interface ICustomerService : IGenericService<Customer>
+    {
+        List<Customer> GetListWithIncludes();
+        List<Phone> GetPhones(int id);
+        List<Mail> GetMails(int id);
+    }
+}

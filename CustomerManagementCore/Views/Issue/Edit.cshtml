@@ -1,0 +1,62 @@
+﻿@using EntityLayer.Concrete
+@model Issue
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="card my-4">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-6 d-flex align-items-center">
+                <h6 class="mb-0">Edit Issue</h6>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        @using (Html.BeginForm("Edit", "Issue", FormMethod.Post))
+        {
+            @Html.HiddenFor(x=>x.IssueId)
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="input-group input-group-outline my-3">
+                        @Html.TextBoxFor(x=>x.Title,new {@class="form-control"})
+                    </div>
+                    @Html.ValidationMessageFor(x=>x.Title,"",new{@style="color:red"})
+
+                    <div class="input-group input-group-outline my-3">
+                        @Html.TextBoxFor(x=>x.Description,new {@class="form-control"})
+                    </div>
+                    @Html.ValidationMessageFor(x=>x.Description,"",new{@style="color:red"})
+
+                    <div class="input-group input-group-outline my-3">
+                        <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.customerList"></select>
+                    </div>
+
+                    <div class="input-group input-group-outline my-3">
+                        <select asp-for="ProductId" class="form-control" asp-items="ViewBag.productList"></select>
+                    </div>
+
+                    <div class="input-group input-group-outline my-3">
+                        <select asp-for="EmployeId" class="form-control" asp-items="ViewBag.employeList"></select>
+                    </div>
+
+                    <div class="input-group input-group-outline my-3">
+                        @Html.TextBoxFor(x=>x.Price,new {@class="form-control"})
+                    </div>
+
+                    <div class="input-group input-group-outline my-3">
+                        <select asp-for="PaymentStatusId" class="form-control" asp-items="ViewBag.paymentStatusList"></select>
+                    </div>
+
+                    <div class="input-group input-group-outline my-3">
+                        @Html.TextBoxFor(x=>x.EstimatedDeliveryDate,new {@class="form-control"})
+                    </div>
+                </div>
+            </div>
+            <br />
+            <button class="btn btn-outline-success" type="submit">Update</button>
+        }
+    </div>
+</div>

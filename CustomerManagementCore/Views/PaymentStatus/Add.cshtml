@@ -1,0 +1,32 @@
+﻿@using EntityLayer.Concrete
+@model PaymentStatus
+@{
+    ViewData["Title"] = "New Payment Status";
+}
+
+<div class="card my-4">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-6 d-flex align-items-center">
+                <h6 class="mb-0">New Payment Status</h6>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        @using (Html.BeginForm("Add", "PaymentStatus", FormMethod.Post))
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="input-group input-group-outline my-3">
+                        <label class="form-label">Status Name</label>
+                        @Html.TextBoxFor(x=>x.Name,new {@class="form-control"})
+                    </div>
+                    @Html.ValidationMessageFor(x=>x.Name,"",new{@style="color:red"})
+                </div>
+            </div>
+            <br />
+            <button class="btn btn-outline-success" type="submit">Add</button>
+        }
+    </div>
+</div>

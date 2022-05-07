@@ -1,0 +1,34 @@
+﻿@model EntityLayer.Concrete.Mail
+@{
+    ViewData["Title"] = "New Mail";
+}
+
+
+<div class="card my-4">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-6 d-flex align-items-center">
+                <h6 class="mb-0">@ViewBag.customerName New Mail</h6>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        @using (Html.BeginForm("MailAdd", "Customer", FormMethod.Post))
+        {
+            @Html.HiddenFor(x=>x.CustomerId)
+            @Html.HiddenFor(x=>x.Status)
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="input-group input-group-outline my-3">
+                        <label class="form-label">Phone</label>
+                        @Html.TextBoxFor(x=>x.Address,new {@class="form-control"})
+                    </div>
+                    @Html.ValidationMessageFor(x=>x.Address,"",new{@style="color:red"})
+                </div>
+            </div>
+            <br />
+            <button class="btn btn-outline-success" type="submit">Add</button>
+        }
+    </div>
+</div>

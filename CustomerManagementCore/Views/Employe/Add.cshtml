@@ -1,0 +1,54 @@
+﻿@using EntityLayer.Concrete
+@model Employe
+@{
+    ViewData["Title"] = "Add";
+}
+
+<div class="card my-4">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-6 d-flex align-items-center">
+                <h6 class="mb-0">New Employe</h6>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        @using (Html.BeginForm("Add", "Employe", FormMethod.Post))
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="input-group input-group-outline my-3">
+                        <label class="form-label">Name</label>
+                        @Html.TextBoxFor(x=>x.Name,new {@class="form-control"})
+                    </div>
+                    @Html.ValidationMessageFor(x=>x.Name,"",new{@style="color:red"})
+
+                    <div class="input-group input-group-outline my-3">
+                        <label class="form-label">Surname</label>
+                        @Html.TextBoxFor(x=>x.Surname,new {@class="form-control"})
+                    </div>
+                    @Html.ValidationMessageFor(x=>x.Surname,"",new{@style="color:red"})
+
+                    <div class="input-group input-group-outline my-3">
+                        <label class="form-label">Username</label>
+                        @Html.TextBoxFor(x=>x.Username,new {@class="form-control"})
+                    </div>
+                    @Html.ValidationMessageFor(x=>x.Username,"",new{@style="color:red"})
+
+                    <div class="input-group input-group-outline my-3">
+                        <label class="form-label">Password</label>
+                        @Html.TextBoxFor(x=>x.Password,new {@class="form-control"})
+                    </div>
+                    @Html.ValidationMessageFor(x=>x.Password,"",new{@style="color:red"})
+
+                    <div class="input-group input-group-outline my-3">
+                        <select asp-for="EmployeTypeId" class="form-control" asp-items="ViewBag.Types"></select>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <button class="btn btn-outline-success" type="submit">Add</button>
+        }
+    </div>
+</div>

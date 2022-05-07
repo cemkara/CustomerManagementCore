@@ -1,0 +1,46 @@
+﻿@using EntityLayer.Concrete
+@model Product
+@{
+    ViewData["Title"] = "Edit Product";
+}
+<div class="card my-4">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-6 d-flex align-items-center">
+                <h6 class="mb-0">Edit Product</h6>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        @using (Html.BeginForm("Edit", "Product", FormMethod.Post))
+        {
+            @Html.HiddenFor(x=>x.ProductId)
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="input-group input-group-outline my-3">
+                        @Html.TextBoxFor(x=>x.Name,new {@class="form-control"})
+                    </div>
+                    @Html.ValidationMessageFor(x=>x.Name,"",new{@style="color:red"})
+
+                    <div class="input-group input-group-outline my-3">
+                        @Html.TextBoxFor(x=>x.Description,new {@class="form-control"})
+                    </div>
+                    @Html.ValidationMessageFor(x=>x.Description,"",new{@style="color:red"})
+
+                    <div class="input-group input-group-outline my-3">
+                        @Html.TextBoxFor(x=>x.Price,new {@class="form-control"})
+                    </div>
+                    @Html.ValidationMessageFor(x=>x.Price,"",new{@style="color:red"})
+                    <div class="input-group input-group-outline my-3">
+                        <select asp-for="ProductCategoryId" class="form-control" asp-items="ViewBag.ProductCategory"></select>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <button class="btn btn-outline-success">Update</button>
+        }
+    </div>
+</div>
+
+

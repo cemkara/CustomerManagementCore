@@ -1,0 +1,69 @@
+﻿@model List<EntityLayer.Concrete.Customer>
+@{
+    ViewData["Title"] = "Customers";
+}
+
+
+<div class="card my-4">
+    <div class="card-header pb-0 p-3">
+        <div class="row">
+            <div class="col-6 d-flex align-items-center">
+                <h6 class="mb-0">Customers</h6>
+            </div>
+            <div class="col-6 text-end">
+                <a href="/Customer/Add" class="btn btn-sm btn-outline-success mb-0">New</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body px-0 pb-2">
+        <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+                <thead>
+                    <tr>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Name</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Mail</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Phone</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.Name @item.Surname
+                            </td>
+
+                            <td>
+                                @{
+                                    string email = "-";
+                                    if (item.Mails.Count > 0)
+                                        email = item.Mails.FirstOrDefault().Address;
+                                }
+                                @email
+                            </td>
+                            <td>
+                                @{
+                                    string phone = "-";
+                                    if (item.Phones.Count > 0)
+                                        phone = item.Phones.FirstOrDefault().Number;
+                                }
+                                @phone
+                            </td>
+                            <td>
+                                @item.Status
+                            </td>
+                            <td class="align-middle">
+                                <a href="/Customer/Edit/@item.CustomerId" class="btn btn-sm btn-outline-warning">Edit</a>
+                                <a href="/Customer/Phones/@item.CustomerId" class="btn btn-sm btn-outline-info">Phones</a>
+                                <a href="/Customer/Mails/@item.CustomerId" class="btn btn-sm btn-outline-info">Mails</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

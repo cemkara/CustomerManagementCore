@@ -1,0 +1,39 @@
+﻿@using EntityLayer.Concrete
+@model EmployeType
+@{
+    ViewData["Title"] = "Edit Employe Type";
+}
+
+<div class="card my-4">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-6 d-flex align-items-center">
+                <h6 class="mb-0">New Employe Types</h6>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        @using (Html.BeginForm("Edit", "EmployeType", FormMethod.Post))
+        {
+            @Html.HiddenFor(x=>x.EmployeTypeId)
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="input-group input-group-outline my-3">
+                        @Html.TextBoxFor(x=>x.Type,new {@class="form-control"})
+                    </div>
+                    @Html.ValidationMessageFor(x=>x.Type,"",new{@style="color:red"})
+                </div>
+                <div class="col-md-2">
+                    <div class="input-group input-group-outline my-3">
+                        Status: @Html.CheckBoxFor(x=>x.Status,new {@class="form-control"})
+                    </div>
+                </div>
+                <br />
+
+            </div>
+            <br />
+            <button class="btn btn-outline-warning" type="submit">Update</button>
+        }
+    </div>
+</div>

@@ -1,0 +1,51 @@
+﻿@model EntityLayer.Concrete.Customer;
+@{
+    ViewData["Title"] = "Edit Customer";
+}
+
+
+<div class="card my-4">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-6 d-flex align-items-center">
+                <h6 class="mb-0">Edit Customer</h6>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        @using (Html.BeginForm("Edit", "Customer", FormMethod.Post))
+        {
+            @Html.HiddenFor(x=>x.CustomerId)
+            @Html.HiddenFor(x=>x.Phone)
+            @Html.HiddenFor(x=>x.Mail)
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="input-group input-group-outline my-3">
+                        @Html.TextBoxFor(x=>x.Name,new {@class="form-control"})
+                    </div>
+                    @Html.ValidationMessageFor(x=>x.Name,"",new{@style="color:red"})
+
+                    <div class="input-group input-group-outline my-3">
+                        @Html.TextBoxFor(x=>x.Surname,new {@class="form-control"})
+                    </div>
+                    @Html.ValidationMessageFor(x=>x.Surname,"",new{@style="color:red"})
+
+                    <div class="input-group input-group-outline my-3">
+                        @Html.TextBoxFor(x=>x.Username,new {@class="form-control"})
+                    </div>
+                    @Html.ValidationMessageFor(x=>x.Username,"",new{@style="color:red"})
+
+                    <div class="col-md-2">
+                        <div class="input-group input-group-outline my-3">
+                            Status: @Html.CheckBoxFor(x=>x.Status,new {@class="form-control"})
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <button class="btn btn-outline-success" type="submit">Update</button>
+        }
+    </div>
+</div>
+
